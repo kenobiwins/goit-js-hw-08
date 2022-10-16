@@ -27,10 +27,11 @@ function eventOnTextArea(e) {
 
 function sumbitForm(e) {
   e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  formData.forEach((value, name) => {
-    console.log(`${name} : ${value}`);
-  });
+  //   const formData = new FormData(e.currentTarget);
+  //   formData.forEach((value, name) => {
+  //     console.log({ name: name, value: value });
+  //   });
+  console.log(formStorage);
   e.currentTarget.reset();
   storage.deleteItem(KEY_FOR_FORM);
 }
