@@ -38,7 +38,7 @@ function sumbitForm(e) {
   if (email.value && message.value) {
     const formData = new FormData(e.currentTarget);
     formData.forEach((value, name) => {
-      console.log({ name: name, value: value });
+      console.log({ name, value });
     });
     e.currentTarget.reset();
     storage.deleteItem(KEY_FOR_FORM);
