@@ -1,9 +1,9 @@
 export const storage = {
-  readItem(key, value) {
+  readItem(key) {
     try {
       return JSON.parse(localStorage.getItem(key));
     } catch (error) {
-      console.error(error.name);
+      console.log(`Local Storage is empty`);
     }
   },
   updateItem(key, value) {
@@ -12,7 +12,7 @@ export const storage = {
         ? undefined
         : localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      console.error(error.massage);
+      console.log(`${error}`);
     }
   },
   deleteItem(key) {

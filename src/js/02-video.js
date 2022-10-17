@@ -8,7 +8,20 @@ const player = new Player(playerId);
 const CURRENT_VIDEO_TIME = 'videoplayer-current-time';
 
 player.on('timeupdate', throttle(currentTimeOnVideo, 1000));
-player.setCurrentTime(storage.readItem(CURRENT_VIDEO_TIME));
+player
+  .setCurrentTime(storage.readItem(CURRENT_VIDEO_TIME))
+  .then(storage.readItem(CURRENT_VIDEO_TIME))
+  .catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        break;
+    }
+  });
+
+function setCurrentTimeCheck() {
+  let currentTime = storage.readItem(CURRENT_VIDEO_TIME);
+  currentTime != null && player.setCurrentTime(currentTime);
+}
 
 function currentTimeOnVideo(e) {
   if (e.seconds === e.duration) {

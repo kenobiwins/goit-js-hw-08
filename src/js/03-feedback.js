@@ -13,9 +13,17 @@ addEventListener('DOMContentLoaded', readLocalStorage);
 
 function readLocalStorage(e) {
   const savedProperty = storage.readItem(KEY_FOR_FORM);
-  if (savedProperty) {
+  try {
     email.value = savedProperty.email;
     message.value = savedProperty.message;
+    if (!savedProperty.email) {
+      email.value = '';
+    }
+    if (!savedProperty.message) {
+      message.value = '';
+    }
+  } catch (error) {
+    console.log('Local Storage is empty');
   }
 }
 
