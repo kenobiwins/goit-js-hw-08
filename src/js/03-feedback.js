@@ -16,21 +16,22 @@ function readLocalStorage(e) {
   try {
     email.value = savedProperty.email;
     message.value = savedProperty.message;
-    if (!savedProperty.email) {
-      email.value = '';
-    }
-    if (!savedProperty.message) {
-      message.value = '';
-    }
   } catch (error) {
     console.log('Local Storage is empty');
   }
 }
 
+// function eventOnTextArea(e) {
+//   const { name, value } = e.target;
+//   formStorage[name] = value;
+//   storage.updateItem(KEY_FOR_FORM, formStorage);
+// }
+// ALTRNATIVE
 function eventOnTextArea(e) {
-  const { name, value } = e.target;
-  formStorage[name] = value;
-  storage.updateItem(KEY_FOR_FORM, formStorage);
+  storage.updateItem(KEY_FOR_FORM, {
+    email: email.value,
+    message: message.value,
+  });
 }
 
 function sumbitForm(e) {
