@@ -5,7 +5,6 @@ const refForm = document.querySelector('.feedback-form');
 
 const { email, message } = refForm;
 const KEY_FOR_FORM = 'feedback-form-state';
-const formStorage = {};
 
 refForm.addEventListener('input', throttle(eventOnTextArea, 500));
 refForm.addEventListener('submit', sumbitForm);
@@ -36,11 +35,12 @@ function eventOnTextArea(e) {
 
 function sumbitForm(e) {
   e.preventDefault();
-  //   const formData = new FormData(e.currentTarget);
-  //   formData.forEach((value, name) => {
-  //     console.log({ name: name, value: value });
-  //   });
-  console.log(formStorage);
-  e.currentTarget.reset();
-  storage.deleteItem(KEY_FOR_FORM);
+  if (email.value && message.value) {
+    const formData = new FormData(e.currentTarget);
+    formData.forEach((value, name) => {
+      console.log({ name: name, value: value });
+    });
+    e.currentTarget.reset();
+    storage.deleteItem(KEY_FOR_FORM);
+  }
 }
